@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
+.virtual_documents/notebooks/
 __pycache__/
 *.pyc
 
