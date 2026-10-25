@@ -1,0 +1,11 @@
+numpy>=1.24
+scipy>=1.10
+
+[notebooks]
+jupyter>=1.0
+matplotlib>=3.7
+ipykernel>=6.0
+nbclient>=0.10
+
+[test]
+pytest>=7.4

@@ -18,7 +18,7 @@ def bs_price(spot, strike, rate, sigma, T, kind):
 @pytest.mark.parametrize("kind", ["call", "put"])
 def test_grid_boundaries_at_maturity(kind):
     S, taux = Makegrid(400, 1, 200, 2000)
-    U = BoundaryConditions(S, taux, kind, 0.05, 400, 1, 100)
+    U = BoundaryConditions(S, taux, kind, 0.05, 100)
     if kind == "call":
         assert U[0, 0] == pytest.approx(0)
         assert U[0, -1] == pytest.approx(300)
@@ -48,6 +48,6 @@ def test_euler_matches_bs(kind):
     U = explicit_euler(S, taux, 100, 0.05, 0.2, kind)
     assert U.shape == (2001, 201)
     assert np.isfinite(U).all()
-    assert np.allclose(U[0], BoundaryConditions(S, taux, kind, 0.05, 400, 1, 100)[0])
+    assert np.allclose(U[0], BoundaryConditions(S, taux, kind, 0.05, 100)[0])
     i0 = np.argmin(abs(S - 100))
     assert abs(U[-1, i0] - bs_price(100, 100, 0.05, 0.2, 1, kind)) < 0.04
